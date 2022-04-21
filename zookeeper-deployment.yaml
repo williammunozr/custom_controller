@@ -4,7 +4,7 @@ metadata:
   name: zookeeper
   labels:
     app: zookeeper
-  namespace: test02
+  namespace: test03
 spec:
   replicas: 1
   selector:
