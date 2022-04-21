@@ -98,8 +98,9 @@ func main() {
 	indexer, informer := cache.NewIndexerInformer(podListWatcher, &v1.Pod{}, 0, cache.ResourceEventHandlerFuncs{
 		AddFunc: func(obj interface{}) {
 			key, err := cache.MetaNamespaceKeyFunc(obj)
-			fmt.Printf("add pod to queue\n")
 			if err == nil {
+				pObj := obj.(metav1.Object)
+				fmt.Printf("add pod %s in namespace %s to queue\n", pObj.GetName(), pObj.GetNamespace())
 				queue.Add(key)
 			}
 		},
